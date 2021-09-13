@@ -56,6 +56,7 @@ contract Farm is DSMath, Ownable {
         require(infoOf[msg.sender].amount > 0, "No amount to withdraw. Deposit first");
         (fee, withdrawAmount) = getAmounts(msg.sender);
         collectedFee = collectedFee.add(fee);
+        infoOf[msg.sender].amount = 0;
         farmCoin.transfer(msg.sender, withdrawAmount);
     }
     
